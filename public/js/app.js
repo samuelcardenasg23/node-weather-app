@@ -18,6 +18,37 @@ const options = {
 
 date.textContent = currentDate.toLocaleDateString("en-US", options);
 
+if ("geolocation" in navigator) {
+  place.textContent = "Loading...";
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.address && data.address.city) {
+            const city = data.address.city;
+            showData(city);
+          } else {
+            place.textContent = "Location not found";
+          }
+        })
+        .catch((error) => {
+          console.log("Error fetching location data:", error);
+          place.textContent = "Error fetching location data";
+        });
+    },
+    function (error) {
+      console.log("Error getting location:", error);
+      place.textContent = "Error getting location";
+    }
+  );
+} else {
+  place.textContent = "Geolocation is not supported by your browser";
+}
+
 weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
   //   console.log(searchInput.value);
