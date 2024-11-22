@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <div class="main-content">
+      {{>header}}
+      <article class="widget">
+        <form class="weather-location">
+          <input class="input-field" type="text" placeholder="City" />
+          <button class="search-btn">Search</button>
+        </form>
+        <div class="icon-weather-info">
+          <div class="weather-icon">
+            <i></i>
+          </div>
+          <div class="weather-info">
+            <div class="temperature">
+              <span></span>
+            </div>
+            <div class="weather-condition"></div>
+          </div>
+        </div>
+        <div class="place"></div>
+        <div class="date"></div>
+      </article>
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
